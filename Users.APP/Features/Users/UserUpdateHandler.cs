@@ -7,7 +7,7 @@ using Users.APP.Domain;
 
 namespace Users.APP.Features.Users
 {
-    public class UserUpdateRequest : Request, IRequest<CommandResponse>
+    public class UserUpdateRequest : Request, IRequest<CommandResponse> 
     {
         [Required, StringLength(30, MinimumLength = 4)]
         public string UserName { get; set; }
@@ -24,10 +24,6 @@ namespace Users.APP.Features.Users
         public Genders Gender { get; set; }
 
         public DateTime? BirthDate { get; set; }
-
-
-        [Range(0, 5)]
-        public decimal Score { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -62,10 +58,9 @@ namespace Users.APP.Features.Users
             entity.UserName = request.UserName;
             entity.Password = request.Password;
             entity.FirstName = request.FirstName?.Trim(); 
-            entity.LastName = request.LastName?.Trim();
+            entity.LastName = request.LastName?.Trim(); 
             entity.Gender = request.Gender;
             entity.BirthDate = request.BirthDate;
-            entity.Score = request.Score;
             entity.IsActive = request.IsActive;
             entity.Address = request.Address?.Trim(); 
             entity.CountryId = request.CountryId;
@@ -74,7 +69,7 @@ namespace Users.APP.Features.Users
 
             entity.RoleIds = request.RoleIds;
 
-            Update(entity); 
+            Update(entity);
 
             return Success("User updated successfully.", entity.Id);
         }

@@ -1,13 +1,10 @@
-﻿
-#nullable disable
-using CORE.APP.Models;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
+﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using CORE.APP.Models;
 using Users.APP.Features.Users;
 
-//Generated from Custom Microservices Template.
 namespace Users.API.Controllers
 {
     [Route("api/[controller]")]
@@ -23,7 +20,6 @@ namespace Users.API.Controllers
             _mediator = mediator;
         }
 
-        // GET: api/Users
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -38,7 +34,7 @@ namespace Users.API.Controllers
             catch (Exception exception)
             {
                 _logger.LogError("UsersGet Exception: " + exception.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersGet."));
+                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersGet.")); 
             }
         }
 
@@ -57,11 +53,10 @@ namespace Users.API.Controllers
             catch (Exception exception)
             {
                 _logger.LogError("UsersGetById Exception: " + exception.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersGetById."));
+                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersGetById.")); 
             }
         }
 
-        // POST: api/Users
         [HttpPost]
         public async Task<IActionResult> Post(UserCreateRequest request)
         {
@@ -81,11 +76,10 @@ namespace Users.API.Controllers
             catch (Exception exception)
             {
                 _logger.LogError("UsersPost Exception: " + exception.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersPost."));
+                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersPost.")); 
             }
         }
 
-        // PUT: api/Users
         [HttpPut]
         public async Task<IActionResult> Put(UserUpdateRequest request)
         {
@@ -105,11 +99,10 @@ namespace Users.API.Controllers
             catch (Exception exception)
             {
                 _logger.LogError("UsersPut Exception: " + exception.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersPut."));
+                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersPut.")); 
             }
         }
 
-        // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -126,19 +119,8 @@ namespace Users.API.Controllers
             catch (Exception exception)
             {
                 _logger.LogError("UsersDelete Exception: " + exception.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersDelete."));
+                return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersDelete.")); 
             }
         }
-
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GetFiltered(UserQueryRequest request)
-        {
-            var response = await _mediator.Send(request);
-            var list = await response.ToListAsync();
-            if (list.Any())
-                return Ok(list);
-            return NoContent();
-        }
-    }
+	}
 }

@@ -7,8 +7,8 @@ namespace CORE.APP.Services
     {
         private CultureInfo _cultureInfo;
 
-        protected CultureInfo CultureInfo
-        {
+        protected CultureInfo CultureInfo 
+        { 
             get
             {
                 return _cultureInfo;
@@ -23,11 +23,12 @@ namespace CORE.APP.Services
 
         protected ServiceBase()
         {
-            CultureInfo = new CultureInfo("en-US");
+            CultureInfo = new CultureInfo("en-US"); 
         }
 
         protected CommandResponse Success(string message, int id) => new CommandResponse(true, message, id);
 
         protected CommandResponse Error(string message) => new CommandResponse(false, message);
+
     }
 }

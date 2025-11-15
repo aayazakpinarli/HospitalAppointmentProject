@@ -1,5 +1,4 @@
-﻿
-using CORE.APP.Models;
+﻿using CORE.APP.Models;
 using CORE.APP.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

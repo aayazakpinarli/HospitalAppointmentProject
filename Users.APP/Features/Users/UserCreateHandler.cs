@@ -7,9 +7,9 @@ using Users.APP.Domain;
 
 namespace Users.APP.Features.Users
 {
-    public class UserCreateRequest : Request, IRequest<CommandResponse>
+    public class UserCreateRequest : Request, IRequest<CommandResponse> 
     {
-        [Required, StringLength(30, MinimumLength = 4)]
+        [Required, StringLength(30, MinimumLength = 4)] 
         public string UserName { get; set; }
 
         [Required, StringLength(15, MinimumLength = 3)]
@@ -24,9 +24,6 @@ namespace Users.APP.Features.Users
         public Genders Gender { get; set; }
 
         public DateTime? BirthDate { get; set; }
-
-        [Range(0, 5)] 
-        public decimal Score { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -56,12 +53,11 @@ namespace Users.APP.Features.Users
             {
                 UserName = request.UserName,
                 Password = request.Password,
-                FirstName = request.FirstName?.Trim(),
+                FirstName = request.FirstName?.Trim(), 
                 LastName = request.LastName?.Trim(), 
                 Gender = request.Gender,
                 BirthDate = request.BirthDate,
-                RegistrationDate = DateTime.Now, 
-                Score = request.Score,
+                RegistrationDate = DateTime.Now,
                 IsActive = request.IsActive,
                 Address = request.Address?.Trim(),
                 CountryId = request.CountryId,
@@ -71,7 +67,7 @@ namespace Users.APP.Features.Users
                 RoleIds = request.RoleIds
             };
 
-            Create(entity);
+            Create(entity); 
 
             return Success("User created successfully.", entity.Id);
         }

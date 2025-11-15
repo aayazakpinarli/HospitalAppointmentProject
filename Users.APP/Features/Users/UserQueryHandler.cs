@@ -16,8 +16,6 @@ namespace Users.APP.Features.Users
         public Genders? Gender { get; set; }
         public DateTime? BirthDateStart { get; set; }
         public DateTime? BirthDateEnd { get; set; }
-        public decimal? ScoreStart { get; set; }
-        public decimal? ScoreEnd { get; set; }
         public bool? IsActive { get; set; }
         public int? CountryId { get; set; }
         public int? CityId { get; set; }
@@ -26,7 +24,7 @@ namespace Users.APP.Features.Users
 
 
 
-    public class UserQueryResponse : Response
+    public class UserQueryResponse : Response 
     {
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -35,19 +33,17 @@ namespace Users.APP.Features.Users
         public Genders Gender { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime RegistrationDate { get; set; }
-        public decimal Score { get; set; }
         public bool IsActive { get; set; }
         public string Address { get; set; }
         public int? CountryId { get; set; }
         public int? CityId { get; set; }
-
+        
 
 
         public string FullName { get; set; }
         public string GenderF { get; set; }
         public string BirthDateF { get; set; }
         public string RegistrationDateF { get; set; }
-        public string ScoreF { get; set; }
         public string IsActiveF { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
@@ -71,12 +67,12 @@ namespace Users.APP.Features.Users
 
         protected override IQueryable<User> Query(bool isNoTracking = true)
         {
-            return base.Query(isNoTracking)
+            return base.Query(isNoTracking) 
                 .Include(u => u.Group)
                 .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
                 .OrderByDescending(u => u.IsActive) 
                 .ThenBy(u => u.RegistrationDate) 
-                .ThenBy(u => u.UserName);
+                .ThenBy(u => u.UserName); 
 
         }
 
@@ -102,12 +98,6 @@ namespace Users.APP.Features.Users
             if (request.BirthDateEnd.HasValue)
                 entityQuery = entityQuery.Where(u => u.BirthDate.HasValue && u.BirthDate.Value.Date <= request.BirthDateEnd.Value.Date);
 
-            if (request.ScoreStart.HasValue)
-                entityQuery = entityQuery.Where(u => u.Score >= request.ScoreStart.Value);
-
-            if (request.ScoreEnd.HasValue)
-                entityQuery = entityQuery.Where(u => u.Score <= request.ScoreEnd.Value);
-
             if (request.IsActive.HasValue)
                 entityQuery = entityQuery.Where(u => u.IsActive == request.IsActive.Value);
 
@@ -117,10 +107,9 @@ namespace Users.APP.Features.Users
             if (request.CityId.HasValue)
                 entityQuery = entityQuery.Where(u => u.CityId == request.CityId.Value);
 
-
+            
             if (request.GroupId.HasValue)
                 entityQuery = entityQuery.Where(u => u.GroupId == request.GroupId.Value);
-
 
 
             var query = entityQuery.Select(u => new UserQueryResponse 
@@ -134,29 +123,33 @@ namespace Users.APP.Features.Users
                 Gender = u.Gender,
                 BirthDate = u.BirthDate,
                 RegistrationDate = u.RegistrationDate,
-                Score = u.Score,
                 IsActive = u.IsActive,
                 Address = u.Address,
                 CountryId = u.CountryId,
                 CityId = u.CityId,
 
                 FullName = u.FirstName + " " + u.LastName,
-                GenderF = u.Gender.ToString(),
+
+                GenderF = u.Gender.ToString(), 
+
                 BirthDateF = u.BirthDate.HasValue ? u.BirthDate.Value.ToString("MM/dd/yyyy") : string.Empty,
+
                 RegistrationDateF = u.RegistrationDate.ToShortDateString(),
-                ScoreF = u.Score.ToString("N1"), 
                 IsActiveF = u.IsActive ? "Active" : "Inactive",
                 Country = (u.CountryId ?? 0).ToString(), 
                 City = (u.CityId ?? 0).ToString(),
                 GroupId = u.GroupId,
                 Group = u.Group.Title,
+
                 GroupResponse = new GroupQueryResponse
                 {
                     Id = u.Group.Id,
                     Guid = u.Group.Guid,
                     Title = u.Group.Title
                 },
+
                 Roles = string.Join(", ", u.UserRoles.Select(ur => ur.Role.Name)),
+
                 RoleResponses = u.UserRoles.Select(ur => new RoleQueryResponse
                 {
                     Id = ur.Role.Id,
@@ -164,7 +157,6 @@ namespace Users.APP.Features.Users
                     Name = ur.Role.Name
                 }).ToList()
             });
-
 
             return Task.FromResult(query);
         }

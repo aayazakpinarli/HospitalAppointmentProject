@@ -2,18 +2,16 @@
 {
     public abstract class Response
     {
-        /// Defined as virtual to allow overriding in derived classes.
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
+        public string Guid { get; set; }
 
-        public virtual string Guid { get; set; }
+        protected Response()
+        {
+        }
 
         protected Response(int id)
         {
             Id = id;
-        }
-
-        protected Response()
-        {
         }
     }
 }

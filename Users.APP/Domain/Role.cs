@@ -13,8 +13,8 @@ namespace Users.APP.Domain
         public List<UserRole> UserRoles { get; set; } = new List<UserRole>();
 
         [NotMapped]
-        public List<int> UserIds
-        {
+        public List<int> UserIds 
+        { 
             get => UserRoles.Select(ur => ur.UserId).ToList();
             set => UserRoles = value.Select(v => new UserRole { UserId = v }).ToList();
         }

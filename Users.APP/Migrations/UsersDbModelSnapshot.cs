@@ -33,7 +33,7 @@ namespace Users.APP.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Groups", (string)null);
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("Users.APP.Domain.Role", b =>
@@ -52,7 +52,7 @@ namespace Users.APP.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Users.APP.Domain.User", b =>
@@ -101,9 +101,6 @@ namespace Users.APP.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Score")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -113,7 +110,7 @@ namespace Users.APP.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Users.APP.Domain.UserRole", b =>
@@ -137,13 +134,13 @@ namespace Users.APP.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Users.APP.Domain.User", b =>
                 {
                     b.HasOne("Users.APP.Domain.Group", "Group")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -168,6 +165,11 @@ namespace Users.APP.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Users.APP.Domain.Group", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Users.APP.Domain.Role", b =>

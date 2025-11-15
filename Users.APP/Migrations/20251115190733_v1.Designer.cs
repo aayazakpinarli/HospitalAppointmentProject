@@ -11,8 +11,8 @@ using Users.APP.Domain;
 namespace Users.APP.Migrations
 {
     [DbContext(typeof(UsersDb))]
-    [Migration("20251115083839_v2")]
-    partial class v2
+    [Migration("20251115190733_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,9 +104,6 @@ namespace Users.APP.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Score")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -146,7 +143,7 @@ namespace Users.APP.Migrations
             modelBuilder.Entity("Users.APP.Domain.User", b =>
                 {
                     b.HasOne("Users.APP.Domain.Group", "Group")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -171,6 +168,11 @@ namespace Users.APP.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Users.APP.Domain.Group", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Users.APP.Domain.Role", b =>

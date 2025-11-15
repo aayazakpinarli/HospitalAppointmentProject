@@ -6,11 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Users.APP.Migrations
 {
     /// <inheritdoc />
-    public partial class v2 : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Groups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Guid = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
@@ -38,7 +52,6 @@ namespace Users.APP.Migrations
                     Gender = table.Column<int>(type: "INTEGER", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Score = table.Column<decimal>(type: "TEXT", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
                     CountryId = table.Column<int>(type: "INTEGER", nullable: true),
@@ -111,6 +124,9 @@ namespace Users.APP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Groups");
         }
     }
 }
