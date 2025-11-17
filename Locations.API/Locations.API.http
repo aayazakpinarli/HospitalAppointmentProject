@@ -1,4 +1,4 @@
-@Locations.API_HostAddress = http://localhost:5038
+@Locations.API_HostAddress = http://localhost:5023
 
 GET {{Locations.API_HostAddress}}/weatherforecast/
 Accept: application/json
