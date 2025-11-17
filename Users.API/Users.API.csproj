@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Templates\**" />
-    <Content Remove="Templates\**" />
-    <EmbeddedResource Remove="Templates\**" />
-    <None Remove="Templates\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Controllers\GroupsObsoleteController.cs" />
   </ItemGroup>
 
