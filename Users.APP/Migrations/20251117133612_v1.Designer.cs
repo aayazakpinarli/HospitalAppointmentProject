@@ -11,7 +11,7 @@ using Users.APP.Domain;
 namespace Users.APP.Migrations
 {
     [DbContext(typeof(UsersDb))]
-    [Migration("20251115190733_v1")]
+    [Migration("20251117133612_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -54,6 +54,9 @@ namespace Users.APP.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Roles");
                 });
@@ -113,6 +116,11 @@ namespace Users.APP.Migrations
 
                     b.HasIndex("GroupId");
 
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.HasIndex("FirstName", "LastName");
+
                     b.ToTable("Users");
                 });
 
@@ -145,7 +153,7 @@ namespace Users.APP.Migrations
                     b.HasOne("Users.APP.Domain.Group", "Group")
                         .WithMany("Users")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -156,13 +164,13 @@ namespace Users.APP.Migrations
                     b.HasOne("Users.APP.Domain.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Users.APP.Domain.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Role");

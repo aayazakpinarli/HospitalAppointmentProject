@@ -52,6 +52,9 @@ namespace Users.APP.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Roles");
                 });
 
@@ -110,6 +113,11 @@ namespace Users.APP.Migrations
 
                     b.HasIndex("GroupId");
 
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.HasIndex("FirstName", "LastName");
+
                     b.ToTable("Users");
                 });
 
@@ -142,7 +150,7 @@ namespace Users.APP.Migrations
                     b.HasOne("Users.APP.Domain.Group", "Group")
                         .WithMany("Users")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -153,13 +161,13 @@ namespace Users.APP.Migrations
                     b.HasOne("Users.APP.Domain.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Users.APP.Domain.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Role");
