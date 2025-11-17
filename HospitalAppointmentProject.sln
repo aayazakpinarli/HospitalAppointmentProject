@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locations.APP", "Locations.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locations.API", "Locations.API\Locations.API.csproj", "{0B67E1E8-D576-9320-E1AD-A7C3C0D0882C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospitals.APP", "Hospitals.APP\Hospitals.APP.csproj", "{6AE8DE14-0311-4B19-82DD-11BDBBFD3AEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospitals.API", "Hospitals.API\Hospitals.API.csproj", "{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,14 @@ Global
 		{0B67E1E8-D576-9320-E1AD-A7C3C0D0882C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B67E1E8-D576-9320-E1AD-A7C3C0D0882C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B67E1E8-D576-9320-E1AD-A7C3C0D0882C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE8DE14-0311-4B19-82DD-11BDBBFD3AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE8DE14-0311-4B19-82DD-11BDBBFD3AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE8DE14-0311-4B19-82DD-11BDBBFD3AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE8DE14-0311-4B19-82DD-11BDBBFD3AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
