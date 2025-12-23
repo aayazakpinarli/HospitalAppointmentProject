@@ -13,9 +13,6 @@ namespace Hospitals.APP.Features.Doctors
         [Required]
         public int UserId { get; set; }
 
-        [Required]
-        public int GroupId { get; set; }
-
         public int BranchId { get; set; }
 
         public Branch Branch { get; set; }
@@ -39,7 +36,6 @@ namespace Hospitals.APP.Features.Doctors
             {
                 BranchId = request.BranchId,
                 UserId = request.UserId,
-                GroupId = request.GroupId,
 
                 PatientIds = request.PatientIds
             };

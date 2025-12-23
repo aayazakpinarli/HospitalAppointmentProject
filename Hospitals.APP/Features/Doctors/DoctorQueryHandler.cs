@@ -12,8 +12,6 @@ namespace Hospitals.APP.Features.Doctors
     {
         public int UserId { get; set; }
 
-        public int GroupId { get; set; }
-
         public int BranchId { get; set; }
 
     }
@@ -21,8 +19,6 @@ namespace Hospitals.APP.Features.Doctors
     public class DoctorQueryResponse : Response
     {
         public int UserId { get; set; }
-
-        public int GroupId { get; set; }
 
         public int BranchId { get; set; }
 
@@ -62,7 +58,6 @@ namespace Hospitals.APP.Features.Doctors
                 Id = d.Id,
                 Guid = d.Guid,
                 UserId = d.UserId,
-                GroupId = d.GroupId,
                 BranchId = d.BranchId,
                 Branch = d.Branch.Title,
                 BranchResponse = new BranchQueryResponse
