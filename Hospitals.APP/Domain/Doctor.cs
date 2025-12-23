@@ -11,9 +11,6 @@ namespace Hospitals.APP.Domain
         [Required]
         public int UserId { get; set; }
 
-        [Required]
-        public int GroupId { get; set; }
-
         public int BranchId { get; set; }
 
         public Branch Branch { get; set; }

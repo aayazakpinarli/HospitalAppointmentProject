@@ -49,7 +49,6 @@ namespace Hospitals.APP.Features.Branchs
                 {
                     Id = u.Id,
                     Guid = u.Guid,
-                    GroupId = u.GroupId,
                     UserId = u.UserId
 
                 }).ToList()
