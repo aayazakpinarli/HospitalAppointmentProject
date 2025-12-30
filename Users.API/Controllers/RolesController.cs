@@ -1,16 +1,14 @@
 ﻿#nullable disable
-using CORE.APP.Models;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using CORE.APP.Models;
 using Users.APP.Features.Roles;
 
 namespace Users.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
     public class RolesController : ControllerBase
     {
         private readonly ILogger<RolesController> _logger;

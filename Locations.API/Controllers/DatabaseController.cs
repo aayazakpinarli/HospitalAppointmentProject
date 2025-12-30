@@ -4,29 +4,60 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Locations.API.Controllers
 {
+    /// <summary>
+    /// API controller for database management operations such as seeding initial data.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class DatabaseController : ControllerBase
     {
+        /// <summary>
+        /// The database context for accessing and manipulating country and city data.
+        /// </summary>
         private readonly LocationsDb _db;
 
+        /// <summary>
+        /// Provides information about the web hosting environment (e.g., Development, Production).
+        /// </summary>
         private readonly IWebHostEnvironment _environment;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseController"/> class.
+        /// </summary>
+        /// <param name="db">The database context to be used for data operations.</param>
+        /// <param name="environment">The web hosting environment.</param>
         public DatabaseController(LocationsDb db, IWebHostEnvironment environment)
         {
             _db = db;
             _environment = environment;
         }
 
+        /// <summary>
+        /// Seeds the database with initial country and city data for development purposes.
+        /// This action removes all existing countries and cities, resets identity columns, and inserts predefined data for Türkiye and the United States of America.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint is only available in the development environment to prevent accidental data loss in production.
+        /// </remarks>
+        /// <returns>
+        /// Returns HTTP 200 OK with a success message if seeding is successful; otherwise, returns HTTP 400 Bad Request if not in development.
+        /// </returns>
         [HttpGet, Route("~/api/SeedDb")]
         public IActionResult Seed()
         {
+            // Can be uncommented to ensure that the seed operation is only allowed in the development environment.
+            //if (!_environment.IsDevelopment())
+            //    return BadRequest("The seed operation can only be performed in development environment!");
+
+            // Remove all existing city and country records from the database.
             _db.Cities.RemoveRange(_db.Cities.ToList());
             _db.Countries.RemoveRange(_db.Countries.ToList());
 
+            // Reset the auto-increment (identity) columns for Cities and Countries tables.
             _db.Database.ExecuteSqlRaw("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Cities';");
             _db.Database.ExecuteSqlRaw("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Countries';");
 
+            // Add a new Country entity for Türkiye, including all 81 cities as child entities.
             _db.Countries.Add(new Country
             {
                 Guid = Guid.NewGuid().ToString(),
@@ -117,6 +148,7 @@ namespace Locations.API.Controllers
                 }
             });
 
+            // Add a new Country entity for the United States of America, including a representative list of major cities.
             _db.Countries.Add(new Country
             {
                 Guid = Guid.NewGuid().ToString(),
@@ -175,14 +207,17 @@ namespace Locations.API.Controllers
                 }
             });
 
+            // Add a new Country entity for China with no cities.
             _db.Countries.Add(new Country
             {
                 Guid = Guid.NewGuid().ToString(),
                 CountryName = "China",
             });
 
+            // Persist all changes to the database.
             _db.SaveChanges();
 
+            // Return a success message indicating the database was seeded.
             return Ok("Database seed successful.");
         }
     }

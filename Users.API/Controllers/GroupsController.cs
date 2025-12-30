@@ -1,16 +1,14 @@
 ﻿#nullable disable
-using CORE.APP.Models;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using CORE.APP.Models;
 using Users.APP.Features.Groups;
 
 namespace Users.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class GroupsController : ControllerBase
     {
         private readonly ILogger<GroupsController> _logger;
