@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospitals.APP", "Hospitals.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospitals.API", "Hospitals.API\Hospitals.API.csproj", "{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.API", "Gateway.API\Gateway.API.csproj", "{4F1E9837-C92F-9BB8-E5A0-8D4BCF47834F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F62AD06-4006-FCA3-3E6B-7938A299E2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F1E9837-C92F-9BB8-E5A0-8D4BCF47834F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F1E9837-C92F-9BB8-E5A0-8D4BCF47834F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F1E9837-C92F-9BB8-E5A0-8D4BCF47834F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F1E9837-C92F-9BB8-E5A0-8D4BCF47834F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,6 +21,7 @@ namespace Users.APP.Features.Roles
             var entity = await Query(false).SingleOrDefaultAsync(r => r.Id == request.Id, cancellationToken);
             if (entity is null)
                 return Error("Role not found!");
+            Delete(entity.UserRoles);
             await Delete(entity, cancellationToken);
             return Success("Role deleted successfully.", entity.Id);
         }
