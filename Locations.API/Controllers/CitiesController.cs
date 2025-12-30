@@ -168,19 +168,6 @@ namespace Locations.API.Controllers
             }
         }
 
-
-
-        /// <summary>
-        /// Retrieves a list of cities that belong to the specified country.
-        /// </summary>
-        /// <param name="countryId">The unique identifier of the country whose cities are to be retrieved.</param>
-        /// <returns>
-        /// Returns <see cref="OkObjectResult"/> with the list of cities if any are found;
-        /// otherwise, returns <see cref="NoContentResult"/> if no cities exist for the given country.
-        /// </returns>
-        /// <remarks>
-        /// Example request: GET api/Cities/GetByCountryId/3
-        /// </remarks>
         [HttpGet("[action]/{countryId}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetByCountryId(int countryId)
